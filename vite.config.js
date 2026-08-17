@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/Sincro/' : '/',
+  base: mode === 'production' ? '/Sincro-Landing-Page/' : '/',
   plugins: [react()],
 }))
