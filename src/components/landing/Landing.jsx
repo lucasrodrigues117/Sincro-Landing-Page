@@ -220,7 +220,9 @@ function Sincronizacao() {
         <div className="ld-flow">
           <Reveal className="ld-flow-side">
             <p className="ld-flow-label">Professor publica</p>
-            <TeacherClassCard index={0} />
+            {/* Status/rodapé apontam para a atividade publicada, não para a
+                próxima aula — é o que o aluno recebe no card ao lado. */}
+            <TeacherClassCard index={0} status="Nova atividade" footer="Trabalho de Geometria" />
           </Reveal>
 
           <div className="ld-flow-wire" aria-hidden="true">
@@ -240,7 +242,18 @@ function Sincronizacao() {
 
           <Reveal className="ld-flow-side" delay={200}>
             <p className="ld-flow-label">Aluno recebe</p>
-            <DeadlineCard index={1} />
+            {/* Mesma turma que o professor publica ao lado: fecha a narrativa
+                publica → organiza → recebe com a atividade real do mock. */}
+            <DeadlineCard
+              deadline={{
+                tag: "Matemática Avançada",
+                tagColor: "#6c5ce7",
+                title: "Trabalho de Geometria",
+                time: "Em 3 dias · 23:59",
+                progress: 25,
+                barColor: "#6c5ce7",
+              }}
+            />
           </Reveal>
         </div>
       </div>

@@ -110,8 +110,8 @@ export function ActivityCard({ classIndex = 0, activityIndex = 0 }) {
 }
 
 /* ── Agenda ── */
-export function DeadlineCard({ index = 0 }) {
-  const d = upcomingDeadlines[index];
+export function DeadlineCard({ index = 0, deadline }) {
+  const d = deadline ?? upcomingDeadlines[index];
 
   return (
     <div className="ag-deadline-item ld-deadline-solo" {...decorative}>
@@ -281,7 +281,7 @@ export function EngagementChart() {
   );
 }
 
-export function TeacherClassCard({ index = 0 }) {
+export function TeacherClassCard({ index = 0, status, footer }) {
   const c = teacherClasses[index];
 
   return (
@@ -289,7 +289,7 @@ export function TeacherClassCard({ index = 0 }) {
       <div className="td-class-top">
         <span className="td-class-icon">{c.icon}</span>
         <span className="td-class-status" style={{ background: c.statusBg, color: c.statusColor }}>
-          {c.status}
+          {status ?? c.status}
         </span>
       </div>
       <p className="td-class-name">{c.name}</p>
@@ -298,7 +298,7 @@ export function TeacherClassCard({ index = 0 }) {
         <span>
           <IconUser /> {c.students} Alunos
         </span>
-        <span>{c.footer}</span>
+        <span>{footer ?? c.footer}</span>
       </div>
     </div>
   );

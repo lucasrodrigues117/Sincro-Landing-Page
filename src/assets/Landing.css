@@ -30,10 +30,6 @@
     radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.12), transparent 40%),
     linear-gradient(150deg, #7d6fef 0%, #6c5ce7 45%, #2d2b6b 100%);
 
-  /* Quanto um palco de produto pode vazar da coluna até a borda da viewport.
-     É o que dá largura suficiente para a tela real caber sem cortar. */
-  --bleed: max(0px, calc((100vw - 1160px) / 2 + clamp(20px, 4vw, 40px) - 10px));
-
   flex: 1;
   width: 100%;
   min-width: 0;
@@ -370,10 +366,8 @@
   max-width: 46ch;
 }
 
-/* Palco do produto — vaza da coluna até a borda direita da viewport.
-   Margem negativa (e não width) para o item de grid esticar no sentido certo. */
+/* Palco do produto — contido na coluna do grid, com o respiro do container. */
 .ld-hero-stage {
-  margin-right: calc(-1 * var(--bleed));
   display: flex;
   justify-content: flex-end;
   min-width: 0;
@@ -423,8 +417,8 @@
   width: 234px;
 }
 
-/* No layout espelhado a moldura sangra pela esquerda: o flutuante fica à
-   direita, senão sai da viewport. */
+/* No layout espelhado a moldura fica à esquerda: o flutuante fica à direita,
+   avançando no vão entre as colunas. */
 .ld-float--alert {
   width: 246px;
   right: -26px;
@@ -750,18 +744,15 @@
   order: -1;
 }
 
-/* Mesma sangria do hero, espelhada conforme o lado em que o visual está */
+/* Visual contido na coluna, alinhado ao lado em que está no grid */
 .ld-act-visual {
   min-width: 0;
   display: flex;
   justify-content: flex-end;
-  margin-right: calc(-1 * var(--bleed));
 }
 
 .ld-act-grid--reverse .ld-act-visual {
   justify-content: flex-start;
-  margin-right: 0;
-  margin-left: calc(-1 * var(--bleed));
 }
 
 .ld-bullets {
@@ -1541,10 +1532,11 @@
   text-indent: 1px;
 }
 
-/* Hero */
+/* Hero — padding-top curto para o bloco inteiro (até a linha de prova social)
+   caber na primeira dobra em notebooks. */
 .ld-hero {
   min-height: 900px;
-  padding-block: clamp(88px, 9vw, 138px) 64px;
+  padding-block: clamp(32px, 3.5vw, 52px) 64px;
   isolation: isolate;
 }
 
@@ -1639,7 +1631,7 @@
 }
 
 .ld-hero-actions {
-  margin: 34px 0 26px;
+  margin: 28px 0 20px;
 }
 
 .ld-hero-proof {
@@ -1670,7 +1662,6 @@
 
 .ld-hero-stage {
   position: relative;
-  margin-right: calc(-1 * max(20px, var(--bleed)));
 }
 
 .ld-stage-inner::before {
