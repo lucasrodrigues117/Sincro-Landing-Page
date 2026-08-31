@@ -1207,7 +1207,7 @@
 
 @media (max-width: 760px) {
   .ld-frame {
-    --ld-scale: calc(var(--ld-scale-base, 0.6) * 0.6);
+    --ld-scale: calc(var(--ld-scale-base, 0.6) * 0.58);
   }
 
   .ld-float--corner,
@@ -1228,11 +1228,18 @@
 
 @media (max-width: 520px) {
   .ld-frame {
-    --ld-scale: calc(var(--ld-scale-base, 0.6) * 0.46);
+    --ld-scale: calc(var(--ld-scale-base, 0.6) * 0.42);
   }
 
   .ld-tile {
     padding: 20px;
+  }
+}
+
+/* Celulares estreitos (≤390px): a tela de 1440px só cabe com escala menor. */
+@media (max-width: 390px) {
+  .ld-frame {
+    --ld-scale: calc(var(--ld-scale-base, 0.6) * 0.34);
   }
 }
 
@@ -2342,6 +2349,17 @@
 
   .ld-act-copy .ld-h2 {
     max-width: 18ch;
+  }
+
+  /* Reafirma regras da 1ª camada clobberadas pela camada de redesign,
+     que vem depois no arquivo e vence no empate de especificidade. */
+  .ld-stage-tilt {
+    transform: none;
+  }
+
+  /* Com a moldura de vidro em 100%, centraliza o frame dentro dela. */
+  .ld-frame {
+    margin-inline: auto;
   }
 }
 
